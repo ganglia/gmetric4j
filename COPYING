@@ -3,13 +3,14 @@ Title:		gmetric4j
 Copyright:
 
 Copyright (C) 2012 Daniel Pocock <daniel@pocock.com.au>
-Copyright (c) 2008-2011 Jasper Humphrey
+Copyright (c) 2008-2011 Jasper Humphrey <jasper521@gmail.com>
 
 Based on:	jmxetric by Jasper Humphrey (BSD style license)
 
 License:             GNU Public License v3 (see gpl-3.0.txt)
 
     Copyright (C) 2010-2012 Daniel Pocock <daniel@pocock.com.au>
+    Copyright (c) 2008-2011 Jasper Humphrey <jasper521@gmail.com>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
