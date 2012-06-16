@@ -21,9 +21,9 @@ public class Protocolv31x extends AbstractProtocol {
     private Map<String,Integer> metricCounterMap = new HashMap<String, Integer>();
     private int metadataMessageInterval;
 
-	public Protocolv31x(String group, int port, UDPAddressingMode mode, 
+	public Protocolv31x(String group, int port, UDPAddressingMode mode, int ttl, 
 			int metadataMessageInterval ) {
-		super(group, port, mode);
+		super(group, port, mode, ttl);
 		this.metadataMessageInterval = metadataMessageInterval ;
 	}
 

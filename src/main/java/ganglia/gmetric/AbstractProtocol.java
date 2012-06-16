@@ -18,15 +18,16 @@ public abstract class AbstractProtocol implements Protocol {
     protected int port ;
     protected String group ;
     private DatagramSocket socket ;
-    private int ttl = 1;
+    private int ttl;
     private UDPAddressingMode mode ;
     private static Logger log =
         Logger.getLogger(AbstractProtocol.class.getName());
 
-	public AbstractProtocol( String group, int port, UDPAddressingMode mode ) {
+	public AbstractProtocol( String group, int port, UDPAddressingMode mode, int ttl ) {
     	this.group = group ;
     	this.port = port ;
     	this.mode = mode ;
+    	this.ttl = ttl;
 	}
 	/**
 	 * Sends the provided byte buffer

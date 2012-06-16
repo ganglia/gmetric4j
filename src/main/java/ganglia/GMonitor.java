@@ -82,7 +82,7 @@ public class GMonitor {
 		GMonitor a = null ;
         try {
             a = new GMonitor();
-            a.setGmetric(new GMetric("239.2.11.71", 8649, UDPAddressingMode.MULTICAST));
+            a.setGmetric(new GMetric("239.2.11.71", 8649, UDPAddressingMode.MULTICAST, 1));
             a.addSampler(new CoreSampler());
             a.start();
         } catch ( Exception ex ) {

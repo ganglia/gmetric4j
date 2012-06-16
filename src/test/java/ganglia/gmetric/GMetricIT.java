@@ -15,7 +15,7 @@ public class GMetricIT {
 
     @Before
     public void setUp() {
-        instance = new GMetric("localhost", 8649, UDPAddressingMode.MULTICAST, true);
+        instance = new GMetric("localhost", 8649, UDPAddressingMode.MULTICAST, 1, true);
     }
 
     /**

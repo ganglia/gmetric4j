@@ -19,19 +19,19 @@ public class GMetric {
      * @param port the port to send the event to
      * @param mode the mode
      */
-    public GMetric( String group, int port, UDPAddressingMode mode) {
-    	this( group, port, mode, true );
+    public GMetric( String group, int port, UDPAddressingMode mode, int ttl) {
+    	this( group, port, mode, ttl, true );
     }
     /**
      * Constructs a GMetric 
      * @param group the host/group to send the event to
      * @param port the port to send the event to
      */
-    public GMetric( String group, int port, UDPAddressingMode mode, boolean ganglia311) {
+    public GMetric( String group, int port, UDPAddressingMode mode, int ttl, boolean ganglia311) {
     	if ( ! ganglia311 )
-    		this.protocol = new Protocolv30x( group, port, mode );
+    		this.protocol = new Protocolv30x( group, port, mode, ttl );
     	else
-    		this.protocol = new Protocolv31x( group, port, mode, 5 );
+    		this.protocol = new Protocolv31x( group, port, mode, ttl, 5 );
     }
     /**
      * The Ganglia Metric Client (gmetric) announces a metric
@@ -110,7 +110,7 @@ public class GMetric {
      */
     public static void main( String[] args ) {
         try {
-            GMetric gm = new GMetric("239.2.11.71", 8649, UDPAddressingMode.MULTICAST) ;
+            GMetric gm = new GMetric("239.2.11.71", 8649, UDPAddressingMode.MULTICAST, 1) ;
             //gm.announce("heartbeat", "0", GMetricType.UINT32, "", GMetricSlope.ZERO, 0, 0, "core");
             gm.announce("BOILINGPOINT", "100", GMetricType.STRING, 
                     "CELSIUS", GMetricSlope.BOTH, 0,0, "TESTGROUP");
