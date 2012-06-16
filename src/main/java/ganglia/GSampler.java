@@ -25,7 +25,7 @@ public abstract class GSampler implements Runnable {
     private int delay;
     private int initialDelay;
     private Publisher publisher = null;
-    private String process = null ;
+    protected String process = null ;
 
     /**
      * Creates a GSampler
