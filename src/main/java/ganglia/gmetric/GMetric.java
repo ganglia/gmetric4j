@@ -1,6 +1,9 @@
 
 package ganglia.gmetric;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
 
 /**
  * Implements the Ganglia gmetric command in java
@@ -8,7 +11,16 @@ package ganglia.gmetric;
 public class GMetric {
 	public enum UDPAddressingMode {
 		MULTICAST,
-		UNICAST
+		UNICAST;
+		
+		public static UDPAddressingMode getModeForAddress(String addr) throws UnknownHostException {
+			InetAddress _addr = InetAddress.getByName(addr);
+			
+			if(_addr.isMulticastAddress())
+				return MULTICAST;
+			
+			return UNICAST;
+		}
 	};
 	
     private Protocol protocol ;
