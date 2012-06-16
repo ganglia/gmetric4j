@@ -20,7 +20,7 @@ public class GMetric {
      * @param mode the mode
      */
     public GMetric( String group, int port, UDPAddressingMode mode) {
-    	this( group, port, mode, false );
+    	this( group, port, mode, true );
     }
     /**
      * Constructs a GMetric 
@@ -110,7 +110,8 @@ public class GMetric {
      */
     public static void main( String[] args ) {
         try {
-            GMetric gm = new GMetric("127.0.0.1", 8649, UDPAddressingMode.MULTICAST) ;
+            GMetric gm = new GMetric("239.2.11.71", 8649, UDPAddressingMode.MULTICAST) ;
+            //gm.announce("heartbeat", "0", GMetricType.UINT32, "", GMetricSlope.ZERO, 0, 0, "core");
             gm.announce("BOILINGPOINT", "100", GMetricType.STRING, 
                     "CELSIUS", GMetricSlope.BOTH, 0,0, "TESTGROUP");
             gm.announce("INTTEST", (int)Integer.MAX_VALUE, "TESTGROUP" ) ;
