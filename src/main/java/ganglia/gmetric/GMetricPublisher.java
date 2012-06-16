@@ -1,9 +1,6 @@
-package jmxetric;
+package ganglia.gmetric;
 
-import ganglia.gmetric.GMetric;
-import ganglia.gmetric.GMetricSlope;
-import ganglia.gmetric.GMetricType;
-import ganglia.gmetric.GangliaException;
+import ganglia.Publisher;
 
 public class GMetricPublisher implements Publisher {
 
