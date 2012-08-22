@@ -16,6 +16,7 @@ public class Ganglia_value_msg implements XdrAble {
     public Ganglia_gmetric_string gstr;
     public Ganglia_gmetric_float gf;
     public Ganglia_gmetric_double gd;
+    public Ganglia_uuid uuid;
 
     public Ganglia_value_msg() {
     }
@@ -28,7 +29,10 @@ public class Ganglia_value_msg implements XdrAble {
     public void xdrEncode(XdrEncodingStream xdr)
            throws OncRpcException, IOException {
         xdr.xdrEncodeInt(id);
-        switch ( id ) {
+        
+        int _id = id & 0xbf;
+        
+        switch ( _id ) {
         case Ganglia_msg_formats.gmetric_ushort:
             gu_short.xdrEncode(xdr);
             break;
@@ -53,12 +57,23 @@ public class Ganglia_value_msg implements XdrAble {
         default:
             break;
         }
+        
+        if(hasUUID()) {
+        	uuid.xdrEncode(xdr);
+        }
+    }
+    
+    protected boolean hasUUID() {
+    	return ((id & 0x40) == 0x40);
     }
 
     public void xdrDecode(XdrDecodingStream xdr)
            throws OncRpcException, IOException {
         id = xdr.xdrDecodeInt();
-        switch ( id ) {
+        
+        int _id = id & 0xbf;
+        
+        switch ( _id ) {
         case Ganglia_msg_formats.gmetric_ushort:
             gu_short = new Ganglia_gmetric_ushort(xdr);
             break;
@@ -82,6 +97,10 @@ public class Ganglia_value_msg implements XdrAble {
             break;
         default:
             break;
+        }
+        
+        if(hasUUID()) {
+        	uuid = new Ganglia_uuid(xdr);
         }
     }
 

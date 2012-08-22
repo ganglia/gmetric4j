@@ -3,6 +3,7 @@ package ganglia.gmetric;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.UUID;
 
 
 /**
@@ -40,10 +41,14 @@ public class GMetric {
      * @param port the port to send the event to
      */
     public GMetric( String group, int port, UDPAddressingMode mode, int ttl, boolean ganglia311) {
+    	this( group, port, mode, ttl, ganglia311, null);
+    }
+    	
+    public GMetric( String group, int port, UDPAddressingMode mode, int ttl, boolean ganglia311, UUID uuid) {
     	if ( ! ganglia311 )
     		this.protocol = new Protocolv30x( group, port, mode, ttl );
     	else
-    		this.protocol = new Protocolv31x( group, port, mode, ttl, 5 );
+    		this.protocol = new Protocolv31x( group, port, mode, ttl, 5, uuid );
     }
     /**
      * The Ganglia Metric Client (gmetric) announces a metric

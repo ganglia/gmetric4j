@@ -11,6 +11,7 @@ public class Ganglia_metadata_msg implements XdrAble {
     public int id;
     public Ganglia_metadatadef gfull;
     public Ganglia_metadatareq grequest;
+    public Ganglia_uuid uuid;
 
     public Ganglia_metadata_msg() {
     }
@@ -19,11 +20,18 @@ public class Ganglia_metadata_msg implements XdrAble {
            throws OncRpcException, IOException {
         xdrDecode(xdr);
     }
+    
+    protected boolean hasUUID() {
+    	return ((id & 0x40) == 0x40);
+    }
 
     public void xdrEncode(XdrEncodingStream xdr)
            throws OncRpcException, IOException {
         xdr.xdrEncodeInt(id);
-        switch ( id ) {
+        
+        int _id = id & 0xbf;
+        
+        switch ( _id ) {
         case Ganglia_msg_formats.gmetadata_full:
             gfull.xdrEncode(xdr);
             break;
@@ -33,12 +41,19 @@ public class Ganglia_metadata_msg implements XdrAble {
         default:
             break;
         }
+        
+        if(hasUUID()) {
+        	uuid.xdrEncode(xdr);
+        }
     }
 
     public void xdrDecode(XdrDecodingStream xdr)
            throws OncRpcException, IOException {
         id = xdr.xdrDecodeInt();
-        switch ( id ) {
+        
+        int _id = id & 0xbf;
+        
+        switch ( _id ) {
         case Ganglia_msg_formats.gmetadata_full:
             gfull = new Ganglia_metadatadef(xdr);
             break;
@@ -47,6 +62,10 @@ public class Ganglia_metadata_msg implements XdrAble {
             break;
         default:
             break;
+        }
+        
+        if(hasUUID()) {
+        	uuid = new Ganglia_uuid(xdr);
         }
     }
 

@@ -3,6 +3,8 @@ package ganglia.gmetric;
 import java.net.InetAddress;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
+
 import org.acplt.oncrpc.XdrBufferEncodingStream;
 
 import ganglia.gmetric.GMetric.UDPAddressingMode;
@@ -13,6 +15,7 @@ import ganglia.xdr.v31x.Ganglia_metadata_msg;
 import ganglia.xdr.v31x.Ganglia_metadatadef;
 import ganglia.xdr.v31x.Ganglia_metric_id;
 import ganglia.xdr.v31x.Ganglia_msg_formats;
+import ganglia.xdr.v31x.Ganglia_uuid;
 import ganglia.xdr.v31x.Ganglia_value_msg;
 
 public class Protocolv31x extends AbstractProtocol {
@@ -20,11 +23,13 @@ public class Protocolv31x extends AbstractProtocol {
     private XdrBufferEncodingStream xdr = new XdrBufferEncodingStream( MAX_BUFFER_SIZE );
     private Map<String,Integer> metricCounterMap = new HashMap<String, Integer>();
     private int metadataMessageInterval;
+    private UUID uuid;
 
 	public Protocolv31x(String group, int port, UDPAddressingMode mode, int ttl, 
-			int metadataMessageInterval ) {
+			int metadataMessageInterval, UUID uuid ) {
 		super(group, port, mode, ttl);
 		this.metadataMessageInterval = metadataMessageInterval ;
+		this.uuid = uuid;
 	}
 
 	private boolean isTimeToSendMetadata( String metricName ) {
@@ -103,6 +108,12 @@ public class Protocolv31x extends AbstractProtocol {
         
         Ganglia_metadata_msg metadata_msg = new Ganglia_metadata_msg();
         metadata_msg.id = Ganglia_msg_formats.gmetadata_full;
+        if(uuid != null) {
+        	metadata_msg.id |= 0x40;
+        	Ganglia_uuid _uuid = new Ganglia_uuid();
+        	_uuid.uuid = uuid;
+        	metadata_msg.uuid = _uuid;
+        }
         metadata_msg.gfull = metadatadef;
 
         xdr.beginEncoding(udpAddr, port) ;
@@ -114,6 +125,12 @@ public class Protocolv31x extends AbstractProtocol {
     	throws Exception {
         Ganglia_value_msg value_msg = new Ganglia_value_msg();
         value_msg.id = Ganglia_msg_formats.gmetric_string;
+        if(uuid != null) {
+        	value_msg.id |= 0x40;
+        	Ganglia_uuid _uuid = new Ganglia_uuid();
+        	_uuid.uuid = uuid;
+        	value_msg.uuid = _uuid;
+        }
         Ganglia_gmetric_string str = new Ganglia_gmetric_string();
         str.str = value;
         str.metric_id = metric_id;
