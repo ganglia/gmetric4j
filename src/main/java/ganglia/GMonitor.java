@@ -15,33 +15,35 @@ public class GMonitor {
 
 	private static Logger log =
 			Logger.getLogger(GMonitor.class.getName());
-	private ScheduledThreadPoolExecutor executor = new ScheduledThreadPoolExecutor(1);
+	
 	private List<GSampler> samplers = new ArrayList<GSampler>();
 	private boolean daemon = true ;
 	private GMetric gmetric = null ;
-	private ThreadFactory daemonThreadGroup = new ThreadFactory() {
-		public Thread newThread(Runnable r) {
-			Thread t = new Thread(r);
-			t.setName("Ganglia Sampling Thread");
-			t.setDaemon(daemon);
-			return t;
-		}
-	};
+	
+	private GScheduler scheduler;
+	
+	public GMonitor() {
+		scheduler = new DefaultGScheduler();
+	}
+	
+	public GMonitor(GScheduler scheduler) {
+		this.scheduler = scheduler;
+	}
 	/**
 	 * Starts the sampling
 	 */    
 	public void start() {
-		executor.setThreadFactory(daemonThreadGroup);
-
+		scheduler.onStart();
+		log.info("Setting up " + samplers.size() + " samplers");
 		for (GSampler s : samplers) {
-			executor.scheduleAtFixedRate(s, s.getInitialDelay(), s.getDelay(), TimeUnit.SECONDS);
+			scheduler.scheduleAtFixedRate(s, s.getInitialDelay(), s.getDelay(), TimeUnit.SECONDS);
 		}
 	}
 	/**
 	 * Stops the sampling of MBeans
 	 */
 	public void stop() {
-		executor.shutdown();
+		scheduler.onStop();
 	}
 	/**
 	 * Adds a new MBeanSampler to be sampled
