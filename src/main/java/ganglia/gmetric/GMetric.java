@@ -31,6 +31,7 @@ public class GMetric {
      * @param group the host/group to send the event to
      * @param port the port to send the event to
      * @param mode the mode
+     * @param ttl time to live value
      */
     public GMetric( String group, int port, UDPAddressingMode mode, int ttl) {
     	this( group, port, mode, ttl, true );
@@ -39,7 +40,7 @@ public class GMetric {
      * Constructs a GMetric 
      * @param group the host/group to send the event to
      * @param port the port to send the event to
-     * @param UDPAddressingMode adressing mode to be used (UNICAST/MULTICAST)
+     * @param mode adressing mode to be used (UNICAST/MULTICAST)
      * @param ttl time to live value
      * @param ganglia311 protocol version true=v3.1, false=v3.0
      */
@@ -51,10 +52,10 @@ public class GMetric {
      * Constructs a GMetric 
      * @param group the host/group to send the event to
      * @param port the port to send the event to
-     * @param UDPAddressingMode adressing mode to be used (UNICAST/MULTICAST)
+     * @param mode adressing mode to be used (UNICAST/MULTICAST)
      * @param ttl time to live value
      * @param ganglia311 protocol version true=v3.1, false=v3.0
-     * @param UUID uuid for the host
+     * @param uuid uuid for the host
      */    	
     public GMetric( String group, int port, UDPAddressingMode mode, int ttl, boolean ganglia311, UUID uuid) {
     	if ( ! ganglia311 )
@@ -67,10 +68,10 @@ public class GMetric {
      * Constructs a GMetric 
      * @param group the host/group to send the event to
      * @param port the port to send the event to
-     * @param UDPAddressingMode adressing mode to be used (UNICAST/MULTICAST)
+     * @param mode adressing mode to be used (UNICAST/MULTICAST)
      * @param ttl time to live value
      * @param ganglia311 protocol version true=v3.1, false=v3.0
-     * @param UUID uuid for the host
+     * @param uuid uuid for the host
      * @param spoof spoofing information IP:hostname
      */    	     
     public GMetric( String group, int port, UDPAddressingMode mode, int ttl, boolean ganglia311, UUID uuid, String spoof) {
