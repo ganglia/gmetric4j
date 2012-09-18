@@ -39,16 +39,45 @@ public class GMetric {
      * Constructs a GMetric 
      * @param group the host/group to send the event to
      * @param port the port to send the event to
+     * @param UDPAddressingMode adressing mode to be used (UNICAST/MULTICAST)
+     * @param ttl time to live value
+     * @param ganglia311 protocol version true=v3.1, false=v3.0
      */
     public GMetric( String group, int port, UDPAddressingMode mode, int ttl, boolean ganglia311) {
     	this( group, port, mode, ttl, ganglia311, null);
     }
-    	
+    
+    /**
+     * Constructs a GMetric 
+     * @param group the host/group to send the event to
+     * @param port the port to send the event to
+     * @param UDPAddressingMode adressing mode to be used (UNICAST/MULTICAST)
+     * @param ttl time to live value
+     * @param ganglia311 protocol version true=v3.1, false=v3.0
+     * @param UUID uuid for the host
+     */    	
     public GMetric( String group, int port, UDPAddressingMode mode, int ttl, boolean ganglia311, UUID uuid) {
     	if ( ! ganglia311 )
     		this.protocol = new Protocolv30x( group, port, mode, ttl );
     	else
-    		this.protocol = new Protocolv31x( group, port, mode, ttl, 5, uuid );
+    		this.protocol = new Protocolv31x( group, port, mode, ttl, 5, uuid, null);
+    }
+    
+    /**
+     * Constructs a GMetric 
+     * @param group the host/group to send the event to
+     * @param port the port to send the event to
+     * @param UDPAddressingMode adressing mode to be used (UNICAST/MULTICAST)
+     * @param ttl time to live value
+     * @param ganglia311 protocol version true=v3.1, false=v3.0
+     * @param UUID uuid for the host
+     * @param spoof spoofing information IP:hostname
+     */    	     
+    public GMetric( String group, int port, UDPAddressingMode mode, int ttl, boolean ganglia311, UUID uuid, String spoof) {
+    	if ( ! ganglia311 )
+    		this.protocol = new Protocolv30x( group, port, mode, ttl );
+    	else
+    		this.protocol = new Protocolv31x( group, port, mode, ttl, 5, uuid, spoof);
     }
     /**
      * The Ganglia Metric Client (gmetric) announces a metric
