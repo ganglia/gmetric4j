@@ -35,7 +35,7 @@ public abstract class AbstractProtocol implements Protocol {
 	 * @param len the num of bytes to send from the buffer
 	 * @throws Exception
 	 */
-	protected void send( byte[] buf, int len) throws Exception {
+	protected void send( byte[] buf, int len, boolean closeit) throws Exception {
 	    if (udpAddr == null )
 	        udpAddr = InetAddress.getByName( group ) ;
 	
@@ -53,6 +53,8 @@ public abstract class AbstractProtocol implements Protocol {
 	    }
 	    log.log(Level.FINEST,"Sending message of length " + len);
 	    socket.send( packet ) ;
+	    if ( closeit )
+	    	socket.close();
 	}
 
 

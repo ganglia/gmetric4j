@@ -21,7 +21,7 @@ public class Protocolv30x extends AbstractProtocol {
 			GMetricType type, String units, GMetricSlope slope, int tmax,
 			int dmax, String groupName) throws Exception {
         encodeGMetric( name, value, type, units, slope, tmax, dmax );
-        send( xdr.getXdrData(), xdr.getXdrLength() );
+        send( xdr.getXdrData(), xdr.getXdrLength() , true);
 	}
 	
 	/**
