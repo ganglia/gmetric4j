@@ -1,7 +1,10 @@
 package ganglia.gmetric;
 
 import static org.junit.Assert.assertEquals;
-import ganglia.gmetric.GMetric.UDPAddressingMode;
+import info.ganglia.gmetric.GMetric;
+import info.ganglia.gmetric.GMetricSlope;
+import info.ganglia.gmetric.GMetricType;
+import info.ganglia.gmetric.GMetric.UDPAddressingMode;
 
 import org.junit.Before;
 import org.junit.Test;
