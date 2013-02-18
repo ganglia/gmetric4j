@@ -1,4 +1,4 @@
-package ganglia.gmetric;
+package info.ganglia.gmetric4j.gmetric;
 
 import java.io.BufferedReader;
 import java.io.CharArrayReader;

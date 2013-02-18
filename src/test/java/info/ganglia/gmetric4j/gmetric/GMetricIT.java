@@ -1,4 +1,4 @@
-package ganglia.gmetric;
+package info.ganglia.gmetric4j.gmetric;
 
 import static org.junit.Assert.assertEquals;
 import info.ganglia.gmetric4j.gmetric.GMetric;
