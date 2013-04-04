@@ -1,6 +1,8 @@
 package ganglia.gmetric;
 
 import java.net.InetAddress;
+import java.net.UnknownHostException;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -25,13 +27,15 @@ public class Protocolv31x extends AbstractProtocol {
     private int metadataMessageInterval;
     private UUID uuid;
     private String spoofName;
+    private String localHostName;
 
 	public Protocolv31x(String group, int port, UDPAddressingMode mode, int ttl, 
-			int metadataMessageInterval, UUID uuid, String spoof) {
+			int metadataMessageInterval, UUID uuid, String spoof)  throws UnknownHostException {
 		super(group, port, mode, ttl);
 		this.metadataMessageInterval = metadataMessageInterval ;
 		this.uuid = uuid;
 		this.spoofName = spoof;
+		this.localHostName = InetAddress.getLocalHost().getHostName();
 	}
 
 	private boolean isTimeToSendMetadata( String metricName ) {
@@ -60,7 +64,7 @@ public class Protocolv31x extends AbstractProtocol {
          * Handle spoofing. No syntax checking done here !!!!
          */
         if (spoofName == null) {
-            metric_id.host = InetAddress.getLocalHost().getHostName();
+            metric_id.host = localHostName;
             metric_id.spoof = false;      	
         } else {
             metric_id.host = spoofName;

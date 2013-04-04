@@ -33,7 +33,7 @@ public class GMetric {
      * @param mode the mode
      * @param ttl time to live value
      */
-    public GMetric( String group, int port, UDPAddressingMode mode, int ttl) {
+    public GMetric( String group, int port, UDPAddressingMode mode, int ttl) throws UnknownHostException {
     	this( group, port, mode, ttl, true );
     }
     /**
@@ -44,7 +44,7 @@ public class GMetric {
      * @param ttl time to live value
      * @param ganglia311 protocol version true=v3.1, false=v3.0
      */
-    public GMetric( String group, int port, UDPAddressingMode mode, int ttl, boolean ganglia311) {
+    public GMetric( String group, int port, UDPAddressingMode mode, int ttl, boolean ganglia311) throws UnknownHostException {
     	this( group, port, mode, ttl, ganglia311, null);
     }
     
@@ -57,7 +57,7 @@ public class GMetric {
      * @param ganglia311 protocol version true=v3.1, false=v3.0
      * @param uuid uuid for the host
      */    	
-    public GMetric( String group, int port, UDPAddressingMode mode, int ttl, boolean ganglia311, UUID uuid) {
+    public GMetric( String group, int port, UDPAddressingMode mode, int ttl, boolean ganglia311, UUID uuid) throws UnknownHostException {
     	if ( ! ganglia311 )
     		this.protocol = new Protocolv30x( group, port, mode, ttl );
     	else
@@ -74,7 +74,7 @@ public class GMetric {
      * @param uuid uuid for the host
      * @param spoof spoofing information IP:hostname
      */    	     
-    public GMetric( String group, int port, UDPAddressingMode mode, int ttl, boolean ganglia311, UUID uuid, String spoof) {
+    public GMetric( String group, int port, UDPAddressingMode mode, int ttl, boolean ganglia311, UUID uuid, String spoof) throws UnknownHostException {
     	if ( ! ganglia311 )
     		this.protocol = new Protocolv30x( group, port, mode, ttl );
     	else
