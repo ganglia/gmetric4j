@@ -9,6 +9,8 @@ import info.ganglia.gmetric4j.gmetric.GMetric.UDPAddressingMode;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.net.UnknownHostException;
+
 /**
  *
  */
@@ -17,7 +19,7 @@ public class GMetricIT {
     private GMetric instance = null;
 
     @Before
-    public void setUp() {
+    public void setUp() throws UnknownHostException {
         instance = new GMetric("localhost", 8649, UDPAddressingMode.MULTICAST, 1, true);
     }
 
