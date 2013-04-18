@@ -5,7 +5,7 @@
   <artifactId>gmetric4j</artifactId>
   <name>gmetric4j</name>
   <packaging>jar</packaging>
-  <version>1.0.2</version>
+  <version>1.0.3-SNAPSHOT</version>
   <description>JVM instrumentation to Ganglia</description>
   <url>http://github.com/ganglia/gmetric4j</url>
   <licenses>

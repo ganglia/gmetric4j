@@ -2,13 +2,11 @@ package info.ganglia.gmetric4j;
 
 
 import info.ganglia.gmetric4j.gmetric.GMetric;
-import info.ganglia.gmetric4j.gmetric.GMetricPublisher;
 import info.ganglia.gmetric4j.gmetric.GMetric.UDPAddressingMode;
+import info.ganglia.gmetric4j.gmetric.GMetricPublisher;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ScheduledThreadPoolExecutor;
-import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 

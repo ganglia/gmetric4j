@@ -1,5 +1,7 @@
  package info.ganglia.gmetric4j.gmetric;
 
+import java.io.IOException;
+
 import info.ganglia.gmetric4j.gmetric.GMetric.UDPAddressingMode;
 import info.ganglia.gmetric4j.xdr.v30x.Ganglia_gmetric_message;
 import info.ganglia.gmetric4j.xdr.v30x.Ganglia_message;
@@ -12,7 +14,7 @@ public class Protocolv30x extends AbstractProtocol {
 	private static final int MAX_BUFFER_SIZE = 1024 ;
     private XdrBufferEncodingStream xdr = new XdrBufferEncodingStream( MAX_BUFFER_SIZE );
     
-    public Protocolv30x( String group, int port, UDPAddressingMode mode, int ttl ) {
+    public Protocolv30x( String group, int port, UDPAddressingMode mode, int ttl ) throws IOException {
     	super(group, port, mode, ttl);
     }
     
@@ -21,7 +23,7 @@ public class Protocolv30x extends AbstractProtocol {
 			GMetricType type, String units, GMetricSlope slope, int tmax,
 			int dmax, String groupName) throws Exception {
         encodeGMetric( name, value, type, units, slope, tmax, dmax );
-        send( xdr.getXdrData(), xdr.getXdrLength() , true);
+        send( xdr.getXdrData(), xdr.getXdrLength());
 	}
 	
 	/**

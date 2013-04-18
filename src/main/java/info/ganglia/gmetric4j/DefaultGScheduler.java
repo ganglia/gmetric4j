@@ -22,16 +22,15 @@ public class DefaultGScheduler implements GScheduler {
 	public DefaultGScheduler() {
 	}
 
-	@Override
 	public void scheduleAtFixedRate(Runnable command, long initialDelay,
 			long period, TimeUnit unit) {
 		executor.scheduleAtFixedRate(command, initialDelay, period, unit);
 	}
-	@Override
+
 	public void onStart() {
 		executor.setThreadFactory(daemonThreadGroup);
 	}
-	@Override
+
 	public void onStop() {
 		executor.shutdown();
 	}
