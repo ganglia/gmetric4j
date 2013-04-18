@@ -1,2 +1,4 @@
 classes/
 gmetric4j.jar
+/target
+/.settings
