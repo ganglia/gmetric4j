@@ -1,15 +1,12 @@
 package info.ganglia.gmetric4j.gmetric;
 
-import static org.junit.Assert.assertEquals;
-import info.ganglia.gmetric4j.gmetric.GMetric;
-import info.ganglia.gmetric4j.gmetric.GMetricSlope;
-import info.ganglia.gmetric4j.gmetric.GMetricType;
+import static org.junit.Assert.*;
 import info.ganglia.gmetric4j.gmetric.GMetric.UDPAddressingMode;
+
+import java.io.IOException;
 
 import org.junit.Before;
 import org.junit.Test;
-
-import java.net.UnknownHostException;
 
 /**
  *
@@ -19,7 +16,7 @@ public class GMetricIT {
     private GMetric instance = null;
 
     @Before
-    public void setUp() throws UnknownHostException {
+    public void setUp() throws IOException {
         instance = new GMetric("localhost", 8649, UDPAddressingMode.MULTICAST, 1, true);
     }
 

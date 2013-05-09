@@ -1,10 +1,12 @@
 package info.ganglia.gmetric4j.gmetric;
 
+import java.io.Closeable;
+
 /**
  * An interface to be implemented by protocol implementations
  *
  */
-public interface Protocol {
+public interface Protocol extends Closeable {
 
 	/**
 	 * Announces a metric

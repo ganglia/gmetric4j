@@ -16,7 +16,6 @@ public class CoreSampler extends GSampler {
 		super(0, 30, "core");
 	}
 
-	@Override
 	public void run() {
 		Publisher gm = getPublisher();
         log.finer("Announcing heartbeat");

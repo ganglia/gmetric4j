@@ -1,25 +1,7 @@
 package info.ganglia.gmetric4j;
 
-
-import info.ganglia.gmetric4j.gmetric.GMetricSlope;
-import info.ganglia.gmetric4j.gmetric.GMetricType;
-
-import java.lang.management.ManagementFactory;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import javax.management.MBeanServer;
-import javax.management.ObjectName;
-import javax.management.openmbean.CompositeData;
-
 public abstract class GSampler implements Runnable {
 
-    private static Logger log =
-            Logger.getLogger(GSampler.class.getName());
     /*
      * The internal data structure is a hashmap of key=mbean name
      */
