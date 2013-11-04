@@ -8,12 +8,12 @@ import info.ganglia.gmetric4j.gmetric.GMetricPublisher;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-import java.util.logging.Logger;
+// import java.util.logging.Logger;
 
 public class GMonitor {
 
-	private static Logger log =
-			Logger.getLogger(GMonitor.class.getName());
+	// private static Logger log =
+	// 		Logger.getLogger(GMonitor.class.getName());
 	
 	private List<GSampler> samplers = new ArrayList<GSampler>();
 	private boolean daemon = true ;
@@ -33,7 +33,7 @@ public class GMonitor {
 	 */    
 	public void start() {
 		scheduler.onStart();
-		log.info("Setting up " + samplers.size() + " samplers");
+		// log.info("Setting up " + samplers.size() + " samplers");
 		for (GSampler s : samplers) {
 			scheduler.scheduleAtFixedRate(s, s.getInitialDelay(), s.getDelay(), TimeUnit.SECONDS);
 		}
@@ -87,7 +87,7 @@ public class GMonitor {
             a.addSampler(new CoreSampler());
             a.start();
         } catch ( Exception ex ) {
-            log.severe("Exception starting GMonitor");
+            //log.severe("Exception starting GMonitor");
             ex.printStackTrace();
         }
         
