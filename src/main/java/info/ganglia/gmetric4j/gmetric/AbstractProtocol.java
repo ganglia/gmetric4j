@@ -8,8 +8,8 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+// import java.util.logging.Level;
+// import java.util.logging.Logger;
 
 
 /**
@@ -20,8 +20,8 @@ public abstract class AbstractProtocol implements Protocol {
     protected int port ;
     protected String group ;
     private DatagramSocket socket ;
-    private static Logger log =
-        Logger.getLogger(AbstractProtocol.class.getName());
+    //private static Logger log =
+    //    Logger.getLogger(AbstractProtocol.class.getName());
 
 	public AbstractProtocol( String group, int port, UDPAddressingMode mode, int ttl ) throws IOException {
     	this.group = group ;
@@ -55,7 +55,7 @@ public abstract class AbstractProtocol implements Protocol {
 	protected void send( byte[] buf, int len) throws Exception {
 	    DatagramPacket packet = new DatagramPacket( buf, len, udpAddr, port) ;
 	
-	    log.log(Level.FINEST,"Sending message of length " + len);
+	    //log.log(Level.FINEST,"Sending message of length " + len);
 	    
 	    socket.send( packet ) ;
 	    
