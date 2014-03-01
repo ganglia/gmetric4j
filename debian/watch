@@ -1,0 +1,2 @@
+version=3
+https://github.com/ganglia/gmetric4j/tags .*/tarball/(\d[\d\.]+)

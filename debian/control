@@ -1,0 +1,20 @@
+Source: gmetric4j
+Section: java
+Priority: optional
+Maintainer: Debian Java Maintainers <pkg-java-maintainers@lists.alioth.debian.org>
+Uploaders: Daniel Pocock <daniel@pocock.com.au>
+Build-Depends: debhelper (>= 9), cdbs (>= 0.4.5.3), default-jdk, remotetea
+Build-Depends-Indep: maven-repo-helper (>> 0.5), maven-ant-helper (>> 4), ant, ant-optional,
+Standards-Version: 3.9.5
+Homepage: https://github.com/ganglia/gmetric4j
+Vcs-Git: https://github.com/ganglia/gmetric4j.git
+Vcs-Browser: https://github.com/ganglia/gmetric4j
+
+Package: libgmetric4j-java
+Architecture: all
+Depends: ${misc:Depends}, remotetea
+Description: gmetric4j Ganglia metric transmission API
+ gmetric4j is a 100% java, configurable Ganglia agent that periodically polls
+ arbitrary attributes and reports their values to Ganglia.
+ .
+ It supports both the v3.1 wire format and the legacy wire format.

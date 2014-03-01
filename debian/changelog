@@ -1,0 +1,6 @@
+gmetric4j (1.0.6-1) unstable; urgency=low
+
+  * Initial packaging (Closes: #740430)
+
+ -- Daniel Pocock <daniel@pocock.com.au>  Sat, 01 Mar 2014 14:36:16 +0100
+
