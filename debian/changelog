@@ -1,3 +1,9 @@
+gmetric4j (1.0.6-2) unstable; urgency=low
+
+  * Recommend ganglia-monitor
+
+ -- Daniel Pocock <daniel@pocock.com.au>  Sun, 02 Mar 2014 20:33:19 +0100
+
 gmetric4j (1.0.6-1) unstable; urgency=low
 
   * Initial packaging (Closes: #740430)
