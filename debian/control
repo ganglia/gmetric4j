@@ -13,6 +13,8 @@ Vcs-Browser: https://github.com/ganglia/gmetric4j
 Package: libgmetric4j-java
 Architecture: all
 Depends: ${misc:Depends}, remotetea
+Recommends: ganglia-monitor
+Suggests: ganglia-webfrontend
 Description: gmetric4j Ganglia metric transmission API
  gmetric4j is a 100% java, configurable Ganglia agent that periodically polls
  arbitrary attributes and reports their values to Ganglia.
