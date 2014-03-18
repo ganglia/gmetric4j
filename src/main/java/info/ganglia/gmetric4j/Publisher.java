@@ -8,4 +8,8 @@ public interface Publisher {
 	void publish( String processName, String attributeName, 
 			String value, GMetricType type, GMetricSlope slope, String units )
 				throws GangliaException;
+	
+	void publish( String processName, String attributeName, 
+			String value, GMetricType type, GMetricSlope slope, int delay, String units )
+				throws GangliaException;
 }
