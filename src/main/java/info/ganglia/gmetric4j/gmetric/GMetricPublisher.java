@@ -11,16 +11,15 @@ public class GMetricPublisher implements Publisher {
 
 	public void publish(String processName, String attributeName, String value,
 			GMetricType type, GMetricSlope slope, String units) throws GangliaException {
-        gm.announce(attributeName, value, type, units, 
-        		slope, 60, 0, processName);
+        publish(processName, attributeName, value, type, slope, 60, 0, units);
 	}
 
 	@Override
 	public void publish(String processName, String attributeName, String value,
-			GMetricType type, GMetricSlope slope, int delay, String units)
+			GMetricType type, GMetricSlope slope, int delay, int lifetime, String units)
 			throws GangliaException {
         gm.announce(attributeName, value, type, units, 
-        		slope, delay, 0, processName);	
+        		slope, delay, lifetime, processName);
 	}
 
 }

@@ -10,6 +10,7 @@ public interface Publisher {
 				throws GangliaException;
 	
 	void publish( String processName, String attributeName, 
-			String value, GMetricType type, GMetricSlope slope, int delay, String units )
+			String value, GMetricType type, GMetricSlope slope, int delay,
+			int lifetime, String units )
 				throws GangliaException;
 }
