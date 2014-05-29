@@ -26,16 +26,21 @@ public class Protocolv31x extends AbstractProtocol {
     private Map<String,Integer> metricCounterMap = new HashMap<String, Integer>();
     private int metadataMessageInterval;
     private UUID uuid;
-    private String spoofName;
+    private boolean isSpoofName;
     private String localHostName;
 
 	public Protocolv31x(String group, int port, UDPAddressingMode mode, int ttl, 
-			int metadataMessageInterval, UUID uuid, String spoof)  throws IOException {
+			int metadataMessageInterval, UUID uuid, String spoofName)  throws IOException {
 		super(group, port, mode, ttl);
 		this.metadataMessageInterval = metadataMessageInterval ;
 		this.uuid = uuid;
-		this.spoofName = spoof;
-		this.localHostName = InetAddress.getLocalHost().getHostName();
+		if (spoofName != null && !spoofName.isEmpty()) {
+			this.isSpoofName = true;
+			this.localHostName = spoofName;
+		} else {
+			this.isSpoofName = false;
+			this.localHostName = InetAddress.getLocalHost().getHostName();
+		}
 	}
 
 	private boolean isTimeToSendMetadata( String metricName ) {
@@ -60,16 +65,8 @@ public class Protocolv31x extends AbstractProtocol {
 			int dmax, String groupName) throws Exception {
 
         Ganglia_metric_id metric_id = new Ganglia_metric_id();
-        /*
-         * Handle spoofing. No syntax checking done here !!!!
-         */
-        if (spoofName == null) {
-            metric_id.host = localHostName;
-            metric_id.spoof = false;      	
-        } else {
-            metric_id.host = spoofName;
-            metric_id.spoof = true;      	
-        }
+        metric_id.spoof = isSpoofName;      	
+        metric_id.host = localHostName;
         metric_id.name = name;
 
         if ( isTimeToSendMetadata( name ) ) {
