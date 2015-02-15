@@ -2,8 +2,6 @@ Name
     gmetric4j - gmetric and gmond functionality in Java
 
 Version
-    gmetric4j 1.0.3
-
     The latest version of this software and document will always be found at 
     http://github.com/ganglia/gmetric4j
 
@@ -23,7 +21,7 @@ Synopsis
 
 Copyright
 
-    Copyright (C) 2010-2013 Daniel Pocock <daniel@pocock.com.au>
+    Copyright (C) 2010-2015 Daniel Pocock <daniel@pocock.com.au>
     Copyright (c) 2008-2011 Jasper Humphrey <jasper521@gmail.com>
 
 
