@@ -42,9 +42,9 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>org.acplt</groupId>
-      <artifactId>oncrpc</artifactId>
-      <version>1.0.7</version>
+      <groupId>org.acplt.remotetea</groupId>
+      <artifactId>remotetea-oncrpc</artifactId>
+      <version>1.1.1</version>
     </dependency>
   </dependencies>
   <parent>
