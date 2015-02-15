@@ -4,7 +4,7 @@
   <groupId>info.ganglia.gmetric4j</groupId>
   <artifactId>gmetric4j</artifactId>
   <name>gmetric4j</name>
-  <packaging>jar</packaging>
+  <packaging>bundle</packaging>
   <version>1.0.7</version>
   <description>JVM instrumentation to Ganglia</description>
   <url>http://github.com/ganglia/gmetric4j</url>
@@ -117,6 +117,23 @@
           <descriptors>
             <descriptor>src/main/assembly/bin.xml</descriptor>
           </descriptors>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>maven-bundle-plugin</artifactId>
+        <extensions>true</extensions>
+        <configuration>
+          <instructions>
+            <Bundle-Name>${project.artifactId}</Bundle-Name>
+            <Bundle-SymbolicName>${project.groupId}.${project.artifactId}</Bundle-SymbolicName>
+            <Export-Package>info.ganglia.gmetric4j</Export-Package>
+            <Import-Package>
+              *
+            </Import-Package>
+            <Implementation-Title>gmetric4j</Implementation-Title>
+            <Implementation-Version>${project.version}</Implementation-Version>
+          </instructions>
         </configuration>
       </plugin>
     </plugins>
