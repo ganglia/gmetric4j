@@ -128,7 +128,7 @@
           <instructions>
             <Bundle-Name>${project.artifactId}</Bundle-Name>
             <Bundle-SymbolicName>${project.groupId}.${project.artifactId}</Bundle-SymbolicName>
-            <Export-Package>info.ganglia.gmetric4j</Export-Package>
+            <Export-Package>info.ganglia.gmetric4j.*</Export-Package>
             <Import-Package>
               *
             </Import-Package>
