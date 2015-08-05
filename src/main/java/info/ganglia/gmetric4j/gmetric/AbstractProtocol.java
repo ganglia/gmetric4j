@@ -29,9 +29,9 @@ public abstract class AbstractProtocol implements Protocol {
         if ( mode == UDPAddressingMode.MULTICAST ) {
             MulticastSocket multicastSocket = new MulticastSocket() ;
             multicastSocket.setTimeToLive(ttl);
-			if ( nif != null && !nif.isEmpty()) {
-				multicastSocket.setNetworkInterface(NetworkInterface.getByName(nif));
-			}
+		    if ( nif != null && !nif.isEmpty()) {
+		        multicastSocket.setNetworkInterface(NetworkInterface.getByName(nif));
+		    }
             this.socket = multicastSocket ;
         } else {
             this.socket = new DatagramSocket() ;
