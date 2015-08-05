@@ -37,7 +37,25 @@ public class GMetric implements Closeable {
      *            time to live value
      */
     public GMetric(String group, int port, UDPAddressingMode mode, int ttl) throws IOException {
-        this(group, port, mode, ttl, true);
+        this(group, port, mode, ttl, null);
+    }
+
+    /**
+     * Constructs a GMetric
+     * 
+     * @param group
+     *            the host/group to send the event to
+     * @param port
+     *            the port to send the event to
+     * @param mode
+     *            the mode
+     * @param ttl
+     *            time to live value
+     * @param nif
+     *            networkinterface to use send the event to
+     */
+    public GMetric(String group, int port, UDPAddressingMode mode, int ttl, String nif) throws IOException {
+        this(group, port, mode, ttl, nif, true);
     }
 
     /**
@@ -51,11 +69,13 @@ public class GMetric implements Closeable {
      *            adressing mode to be used (UNICAST/MULTICAST)
      * @param ttl
      *            time to live value
+     * @param nif
+     *            networkinterface to use send the event to
      * @param ganglia311
      *            protocol version true=v3.1, false=v3.0
      */
-    public GMetric(String group, int port, UDPAddressingMode mode, int ttl, boolean ganglia311) throws IOException {
-        this(group, port, mode, ttl, ganglia311, null);
+    public GMetric(String group, int port, UDPAddressingMode mode, int ttl, String nif, boolean ganglia311) throws IOException {
+        this(group, port, mode, ttl, nif, ganglia311, null);
     }
 
     /**
@@ -69,17 +89,19 @@ public class GMetric implements Closeable {
      *            adressing mode to be used (UNICAST/MULTICAST)
      * @param ttl
      *            time to live value
+     * @param nif 
+     *            networkinterface to use send the event to
      * @param ganglia311
      *            protocol version true=v3.1, false=v3.0
      * @param uuid
      *            uuid for the host
      */
-    public GMetric(String group, int port, UDPAddressingMode mode, int ttl, boolean ganglia311, UUID uuid)
+    public GMetric(String group, int port, UDPAddressingMode mode, int ttl, String nif, boolean ganglia311, UUID uuid)
             throws IOException {
         if (!ganglia311)
-            this.protocol = new Protocolv30x(group, port, mode, ttl);
+            this.protocol = new Protocolv30x(group, port, mode, ttl, nif);
         else
-            this.protocol = new Protocolv31x(group, port, mode, ttl, 5, uuid, null);
+            this.protocol = new Protocolv31x(group, port, mode, ttl, nif, 5, uuid, null);
     }
 
     /**
@@ -100,12 +122,12 @@ public class GMetric implements Closeable {
      * @param spoof
      *            spoofing information IP:hostname
      */
-    public GMetric(String group, int port, UDPAddressingMode mode, int ttl, boolean ganglia311, UUID uuid, String spoof)
+    public GMetric(String group, int port, UDPAddressingMode mode, int ttl, String nif, boolean ganglia311, UUID uuid, String spoof)
             throws IOException {
         if (!ganglia311)
-            this.protocol = new Protocolv30x(group, port, mode, ttl);
+            this.protocol = new Protocolv30x(group, port, mode, ttl, nif);
         else
-            this.protocol = new Protocolv31x(group, port, mode, ttl, 5, uuid, spoof);
+            this.protocol = new Protocolv31x(group, port, mode, ttl, nif, 5, uuid, spoof);
     }
 
     /**

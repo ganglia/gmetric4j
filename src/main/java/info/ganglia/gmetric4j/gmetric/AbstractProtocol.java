@@ -4,10 +4,7 @@ package info.ganglia.gmetric4j.gmetric;
 import info.ganglia.gmetric4j.gmetric.GMetric.UDPAddressingMode;
 
 import java.io.IOException;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import java.net.InetAddress;
-import java.net.MulticastSocket;
+import java.net.*;
 // import java.util.logging.Level;
 // import java.util.logging.Logger;
 
@@ -23,7 +20,8 @@ public abstract class AbstractProtocol implements Protocol {
     //private static Logger log =
     //    Logger.getLogger(AbstractProtocol.class.getName());
 
-	public AbstractProtocol( String group, int port, UDPAddressingMode mode, int ttl ) throws IOException {
+	public AbstractProtocol( String group, int port, UDPAddressingMode mode, int ttl, 
+							 String nif ) throws IOException {
     	this.group = group ;
     	this.port = port ;
         this.udpAddr = InetAddress.getByName( group ) ;
@@ -31,6 +29,9 @@ public abstract class AbstractProtocol implements Protocol {
         if ( mode == UDPAddressingMode.MULTICAST ) {
             MulticastSocket multicastSocket = new MulticastSocket() ;
             multicastSocket.setTimeToLive(ttl);
+		    if ( nif != null && !nif.isEmpty()) {
+		        multicastSocket.setNetworkInterface(NetworkInterface.getByName(nif));
+		    }
             this.socket = multicastSocket ;
         } else {
             this.socket = new DatagramSocket() ;
