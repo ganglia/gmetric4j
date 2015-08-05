@@ -17,7 +17,7 @@ public class GMetricIT {
 
     @Before
     public void setUp() throws IOException {
-        instance = new GMetric("239.2.11.71", 8649, UDPAddressingMode.MULTICAST, 1, true);
+        instance = new GMetric("239.2.11.71", 8649, UDPAddressingMode.MULTICAST, 1, null, true);
     }
 
     /**

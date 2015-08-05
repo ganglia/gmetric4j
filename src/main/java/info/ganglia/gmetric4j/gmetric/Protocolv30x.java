@@ -14,8 +14,9 @@ public class Protocolv30x extends AbstractProtocol {
 	private static final int MAX_BUFFER_SIZE = 1024 ;
     private XdrBufferEncodingStream xdr = new XdrBufferEncodingStream( MAX_BUFFER_SIZE );
     
-    public Protocolv30x( String group, int port, UDPAddressingMode mode, int ttl ) throws IOException {
-    	super(group, port, mode, ttl);
+    public Protocolv30x( String group, int port, UDPAddressingMode mode, int ttl, 
+                         String nif ) throws IOException {
+    	super(group, port, mode, ttl, nif);
     }
     
 	@Override

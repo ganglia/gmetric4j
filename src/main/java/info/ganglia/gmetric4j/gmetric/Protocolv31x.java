@@ -29,9 +29,9 @@ public class Protocolv31x extends AbstractProtocol {
     private boolean isSpoofName;
     private String localHostName;
 
-	public Protocolv31x(String group, int port, UDPAddressingMode mode, int ttl, 
+	public Protocolv31x(String group, int port, UDPAddressingMode mode, int ttl, String nif, 
 			int metadataMessageInterval, UUID uuid, String spoofName)  throws IOException {
-		super(group, port, mode, ttl);
+		super(group, port, mode, ttl, nif);
 		this.metadataMessageInterval = metadataMessageInterval ;
 		this.uuid = uuid;
 		if (spoofName != null && !spoofName.isEmpty()) {
