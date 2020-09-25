@@ -1,4 +1,13 @@
 language: java
+
+addons:
+  apt:
+    packages: maven
+
+matrix:
+  include:
+    - arch: ppc64le
+      jdk: openjdk8
 jdk:
   - oraclejdk7
   - openjdk6
